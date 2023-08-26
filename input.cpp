@@ -1,4 +1,5 @@
 #include "input.h"
+#include <iostream>
 
 int getJoyIndex(int id);
 
@@ -108,9 +109,15 @@ void doJoystickAdded(SDL_JoyDeviceEvent *event)
 	fprintf(stdout, "  Number of Buttons:\t%i\n", SDL_JoystickNumButtons(app.joysticks[i]));
 	fprintf(stdout, "  Number of Balls:\t%i\n", SDL_JoystickNumBalls(app.joysticks[i]));
 
-    fprintf(stdout, "  xxxx:\t\t\t%s\n", SDL_JoystickPath(app.joysticks[i]));
     fprintf(stdout, "  xxxx:\t\t\t%s\n", SDL_JoystickGetSerial(app.joysticks[i]));
-    fprintf(stdout, "  xxxx:\t\t\t%s\n", SDL_JoystickGetDeviceVendor(event->which));
+
+    // 获取手柄的GUID字符串
+    SDL_JoystickGUID guid = SDL_JoystickGetGUID(app.joysticks[i]);
+    char guidString[33];
+    SDL_JoystickGetGUIDString(guid, guidString, sizeof(guidString));
+
+    std::cout << guidString<<std::endl;
+
 
 
 
