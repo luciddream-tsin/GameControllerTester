@@ -107,8 +107,14 @@ void doJoystickAdded(SDL_JoyDeviceEvent *event)
 	fprintf(stdout, "  Number of Axes:\t%i\n", SDL_JoystickNumAxes(app.joysticks[i]));
 	fprintf(stdout, "  Number of Buttons:\t%i\n", SDL_JoystickNumButtons(app.joysticks[i]));
 	fprintf(stdout, "  Number of Balls:\t%i\n", SDL_JoystickNumBalls(app.joysticks[i]));
-	
-	// check if the joystick is a haptic device
+
+    fprintf(stdout, "  xxxx:\t\t\t%s\n", SDL_JoystickPath(app.joysticks[i]));
+    fprintf(stdout, "  xxxx:\t\t\t%s\n", SDL_JoystickGetSerial(app.joysticks[i]));
+    fprintf(stdout, "  xxxx:\t\t\t%s\n", SDL_JoystickGetDeviceVendor(event->which));
+
+
+
+    // check if the joystick is a haptic device
 	if(SDL_JoystickIsHaptic(app.joysticks[i]) < 0)
 	{
 		fprintf(stderr, "Error: Joystick #%i(%i) is not haptic, rumble can't be enabled. %s\n\n", i, event->which, SDL_GetError());
