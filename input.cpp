@@ -107,9 +107,15 @@ void doJoystickAdded(SDL_JoyDeviceEvent *event)
 	fprintf(stdout, "  Name:\t\t\t%s\n", SDL_JoystickName(app.joysticks[i]));
 	fprintf(stdout, "  Number of Axes:\t%i\n", SDL_JoystickNumAxes(app.joysticks[i]));
 	fprintf(stdout, "  Number of Buttons:\t%i\n", SDL_JoystickNumButtons(app.joysticks[i]));
-	fprintf(stdout, "  Number of Balls:\t%i\n", SDL_JoystickNumBalls(app.joysticks[i]));
 
-    fprintf(stdout, "  xxxx:\t\t\t%s\n", SDL_JoystickGetSerial(app.joysticks[i]));
+    Uint16 productID = SDL_JoystickGetProduct(app.joysticks[i]);
+    Uint16 vendorID = SDL_JoystickGetVendor(app.joysticks[i]);
+
+    std::cout << "productID: " << productID << std::endl;
+    std::cout << "productID: 0x"  <<std::hex << productID << std::endl;
+
+    std::cout << "vendorID: " << std::dec << vendorID << std::endl;
+    std::cout << "vendorID: 0x"  <<std::hex << vendorID << std::endl;
 
     // 获取手柄的GUID字符串
     SDL_JoystickGUID guid = SDL_JoystickGetGUID(app.joysticks[i]);
